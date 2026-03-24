@@ -1,21 +1,10 @@
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.API_BASE_URL;
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const BASE_URL = "https://rydence-backend.onrender.com/api/v1";
 
 export const getRideInfo = async (scenario = "normal") => {
-  try {
-    const response = await api.get(`/ride-info?scenario=${scenario}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching ride info:", error);
-    throw error;
-  }
+  const response = await axios.get(`${BASE_URL}/ride-info`, {
+    params: { scenario },
+  });
+  return response.data;
 };
