@@ -32,3 +32,32 @@
 // 	fmt.Println("Server running on http://localhost:8080")
 // }
 
+package main
+
+import (
+	"os"
+
+	"rydence/handlers"
+	"rydence/middleware"
+
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	r := gin.Default()
+	r.Use(middleware.CORS())
+
+	v1 := r.Group("/api/v1")
+	{
+		v1.GET("/pricing", handlers.GetPricing)
+		v1.GET("/predict", handlers.GetPredictionHandler)
+		v1.GET("/trend", handlers.GetTrendHandler)
+		v1.GET("/ride-info", handlers.GetFullRideInfo)
+	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	r.Run(":" + port)
+}
