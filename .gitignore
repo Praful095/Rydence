@@ -1,0 +1,25 @@
+.env
+
+frontend/node_modules
+frontend/dist
+frontend/build/
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.DS_Store
+.idea/      
+.vscode/
+# Ignore Mac system files
+.DS_Store   
+
+backened/bin/
+backened/tmp/
+backened/vendor/
+
+*.exe
+*.dll
+*.out
+*.test
